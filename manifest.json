@@ -1,0 +1,9 @@
+{
+  "name":"DUNGNGUYENVL AI Content Studio",
+  "short_name":"DN AI Studio",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#090d14",
+  "theme_color":"#111827",
+  "description":"AI Content Studio tạo Story 70s, Hook, Caption, Image Prompt và Video Prompt."
+}

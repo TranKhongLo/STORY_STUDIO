@@ -1,0 +1,1361 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DUNGNGUYENVL AI CONTENT STUDIO V10</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b10;color:#f4f7fb;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:28px 16px 60px}
+.hero{text-align:center;padding:16px 0 26px}
+.badge{display:inline-block;padding:7px 13px;border:1px solid #3d3760;border-radius:999px;color:#cfc7ff;font-size:12px;font-weight:800;letter-spacing:.5px}
+h1{font-size:38px;line-height:1.1;margin:14px 0 8px}
+.sub{color:#9ca7b8;font-size:15px}
+.intro{max-width:850px;margin:14px auto 0;color:#aeb7c6;line-height:1.7;font-size:14px}
+.card{background:#111720;border:1px solid #283140;border-radius:18px;padding:21px;margin:16px 0;box-shadow:0 10px 35px #0004}
+.title{font-size:18px;font-weight:850;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+label{display:block;color:#cbd2de;font-size:13px;font-weight:750;margin:0 0 7px}
+select,input,textarea{width:100%;background:#0b0f15;color:#f4f7fb;border:1px solid #30394a;border-radius:11px;padding:12px 13px;font:inherit;outline:none}
+select:focus,input:focus,textarea:focus{border-color:#806aff}
+textarea{resize:vertical;line-height:1.65}
+.story{min-height:430px}.long{min-height:180px}.prompt{min-height:290px}
+.row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+button{border:0;border-radius:11px;padding:12px 16px;background:#283142;color:#fff;font-weight:850;cursor:pointer}
+button:hover{filter:brightness(1.1)}
+.primary{background:linear-gradient(135deg,#7158ff,#9a83ff)}
+.copy{background:#185d8b}.random{background:#68421f}.green{background:#176446}
+.danger{background:#642d35}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pill{border:1px solid #30394a;background:#1a2230;border-radius:999px;padding:6px 10px;font-size:12px;color:#cbd3df}
+.status{color:#48df87;font-size:13px;font-weight:750;min-height:20px;margin-top:10px}
+.hint{color:#8995a8;font-size:12px;line-height:1.6;margin-top:8px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{background:#1a2230;border:1px solid #30394a}
+.tab.active{background:#3b326c;border-color:#7665c9}
+.outputgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.output{min-height:210px}
+.smalltitle{font-weight:800;font-size:14px;margin-bottom:8px}
+.checks{display:flex;gap:16px;flex-wrap:wrap;color:#b9c3d1;font-size:13px}
+.dna{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.dna textarea{min-height:95px}
+.quality{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qitem{padding:10px 12px;border:1px solid #30394a;border-radius:11px;background:#0b0f15;color:#aeb8c8;font-size:12px;line-height:1.5}
+.qitem.ok{border-color:#1c7b55;color:#71e3a8}
+.qitem.warn{border-color:#8a6330;color:#e5c17c}
+.historybox{max-height:150px;overflow:auto;border:1px solid #30394a;border-radius:11px;background:#0b0f15;padding:10px;color:#9da9ba;font-size:12px;line-height:1.6}
+@media(max-width:760px){.dna,.quality{grid-template-columns:1fr}}
+
+.checks label{display:flex;align-items:center;gap:7px;font-weight:600;margin:0}
+.checks input{width:auto}
+footer{text-align:center;color:#667184;font-size:12px;padding:25px 0 5px;line-height:1.8}
+@media(max-width:760px){.grid,.grid3,.outputgrid{grid-template-columns:1fr}h1{font-size:30px}}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.contact-item{display:flex;align-items:center;gap:11px;background:#0b0f15;border:1px solid #2b3442;border-radius:13px;padding:14px}.contact-icon{font-size:23px;min-width:28px;text-align:center}.contact-label{font-size:11px;color:#8995a8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}.contact-value,.contact-link{font-size:14px;font-weight:800;color:#f4f7fb;text-decoration:none}.contact-link{color:#b9aaff}.contact-link:hover{text-decoration:underline}.contact-note{margin-top:13px;padding-top:13px;border-top:1px solid #252d39;color:#8995a8;font-size:12px}@media(max-width:820px){.contact-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.contact-grid{grid-template-columns:1fr}}
+</style>
+
+<style>
+.v9grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.v9panel{border:1px solid #273043;border-radius:14px;padding:14px;background:#0e1420}.v9chips{display:flex;flex-wrap:wrap;gap:8px}.v9chip{padding:7px 10px;border:1px solid #2a3447;border-radius:999px;background:#121a29;color:#dce5f2;cursor:pointer}.v9chip:hover{border-color:#667eea}.v9toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.v9badge{display:inline-block;padding:4px 8px;border-radius:8px;background:#182235;color:#9fb3d0;font-size:12px}.v9project{padding:10px;border-bottom:1px solid #202735;display:flex;justify-content:space-between;gap:10px;align-items:center}.v9project button{margin:0}.v9stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.v9stat div{padding:10px;border-radius:10px;background:#121a29;text-align:center}.v9stat b{display:block;font-size:18px}.danger{border-color:#6d3030!important}.success{border-color:#2c6d4a!important}@media(max-width:760px){.v9grid,.v9stat{grid-template-columns:1fr}.v9project{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<span class="badge">DUNGNGUYENVL CREATIVE TOOLS</span>
+<h1>DUNGNGUYENVL AI CONTENT STUDIO V10</h1>
+<div class="sub">Tạo storytelling 70 giây • Chủ đề động • ElevenLabs • Thumbnail • Facebook • TikTok • YouTube</div>
+<p class="intro">Biến một chủ đề thành Story 70 giây hoàn chỉnh: Topic DNA → kịch bản → caption → hook thumbnail → prompt ảnh → kiểm tra chất lượng. Hoạt động offline và có thể dùng AI khi thêm API Key.</p>
+</header>
+
+<section class="card">
+<div class="title">① Chủ đề & phong cách</div>
+<div class="grid3">
+<div><label>Nhóm chủ đề</label><select id="category"></select></div>
+<div>
+<label>Chủ đề tự động / chủ đề hiện tại</label>
+<input id="topic" placeholder="Bấm 🎲 CHỦ ĐỀ TỰ ĐỘNG để tạo một chủ đề mới. Story 70s luôn được tạo mới theo đúng chủ đề đang hiển thị và được xây dựng từ Topic DNA.">
+</div>
+<div><label>Nhập chủ đề riêng</label><input id="custom" placeholder="Ví dụ: Người con về quê khi mẹ đã không còn..."></div>
+</div>
+<div class="grid3" style="margin-top:14px">
+<div><label>Góc cảm xúc</label>
+<select id="emotion">
+<option>Buồn và day dứt</option><option>Trưởng thành và chiêm nghiệm</option><option>Chữa lành nhẹ nhàng</option><option>Cô đơn và im lặng</option><option>Tình yêu dang dở</option><option>Gia đình và biết ơn</option>
+</select></div>
+<div><label>Giọng kể</label>
+<select id="voice"><option>Nam trầm, từng trải</option><option>Nữ trầm, sâu lắng</option><option>Trung tính, điện ảnh</option></select></div>
+<div><label>Mức độ cảm xúc</label>
+<select id="intensity"><option>Sâu vừa</option><option>Rất sâu</option><option>Đau và ám ảnh</option></select></div>
+</div>
+<div class="row">
+<button class="primary" onclick="generate()">✨ TẠO STORY 70S</button><button class="primary" onclick="generateFullContent()">⚡ TẠO FULL CONTENT</button>
+<button class="random" onclick="randomTopic()">🎲 CHỦ ĐỀ TỰ ĐỘNG</button>
+<button onclick="makeMasterPrompt()">🧠 XEM MASTER PROMPT</button>
+<button onclick="resetAll()">↻ LÀM LẠI</button>
+<button onclick="clearTopicHistory()">🗑️ XÓA LỊCH SỬ CHỦ ĐỀ</button>
+</div>
+<div class="hint">Nút 🎲 CHỦ ĐỀ TỰ ĐỘNG chỉ tạo một chủ đề mới. Sau đó bấm ✨ TẠO STORY 70S để tạo một câu chuyện MỚI, bám đúng chủ đề hiện tại. Lịch sử tối đa 2.000 chủ đề được lưu trên trình duyệt để tránh lặp.</div>
+<div id="status" class="status"></div><div class="hint">💡 Quy trình: tạo/chọn chủ đề → <b>TẠO STORY 70S</b> → kiểm tra Story, Caption, Thumbnail và Master Prompt.</div>
+</section>
+
+<section class="card">
+<div class="title">② 🧬 Topic DNA — xương sống của câu chuyện</div>
+<div class="hint">App phân tích chủ đề trước khi viết: nhân vật, bối cảnh, vấn đề, xung đột, cao trào và thông điệp. Story 70s phải được xây dựng từ Topic DNA hiện tại, không dùng lại một mẫu chung.</div>
+<div class="dna" style="margin-top:12px">
+<div><label>👤 Nhân vật</label><textarea id="dnaCharacter" readonly placeholder="Nhân vật chính..."></textarea></div>
+<div><label>📍 Bối cảnh</label><textarea id="dnaSetting" readonly placeholder="Bối cảnh..."></textarea></div>
+<div><label>💔 Vấn đề</label><textarea id="dnaProblem" readonly placeholder="Vấn đề trung tâm..."></textarea></div>
+<div><label>⚡ Xung đột</label><textarea id="dnaConflict" readonly placeholder="Xung đột..."></textarea></div>
+<div><label>🔥 Cao trào</label><textarea id="dnaClimax" readonly placeholder="Khoảnh khắc cao trào..."></textarea></div>
+<div><label>🌱 Thông điệp</label><textarea id="dnaMessage" readonly placeholder="Thông điệp cuối..."></textarea></div>
+</div>
+</section>
+
+<section class="card">
+<div class="title" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+③ Câu chuyện 70 giây
+<div class="row" style="margin:0">
+<button class="copy" onclick="copyStory()">📋 COPY SANG ELEVENLABS</button><button onclick="copyFormattedStory()">📋 COPY BẢN CÓ ĐOẠN</button>
+<button class="green" onclick="copyHook()">📋 COPY HOOK</button>
+</div>
+</div>
+<textarea id="story" class="story" placeholder="Story sẽ xuất hiện theo từng đoạn: HOOK → PHẦN 1 → PHẦN 2 → CAO TRÀO → KẾT. Nút COPY SANG ELEVENLABS sẽ tự bỏ nhãn thời gian nhưng giữ nguyên xuống dòng và khoảng nghỉ."></textarea>
+<div class="meta"><span class="pill" id="wc">0 từ</span><span class="pill" id="sec">~0 giây</span><span class="pill">Voice-over ready</span><span class="pill">Xuống dòng theo nhịp đọc</span><span class="pill">Không emoji trong script</span></div>
+</section>
+
+<section class="card">
+<div class="title">④ Nội dung mạng xã hội</div>
+<div class="outputgrid">
+<div><div class="smalltitle">📘 Facebook</div><textarea id="fb" class="output" placeholder="Caption Facebook..."></textarea><div class="row"><button class="copy" onclick="copyField('fb','Đã copy caption Facebook.')">📋 COPY</button></div></div>
+<div><div class="smalltitle">🎵 TikTok</div><textarea id="tt" class="output" placeholder="Caption TikTok..."></textarea><div class="row"><button class="copy" onclick="copyField('tt','Đã copy caption TikTok.')">📋 COPY</button></div></div>
+<div><div class="smalltitle">▶️ YouTube</div><textarea id="yt" class="output" placeholder="Caption YouTube..."></textarea><div class="row"><button class="copy" onclick="copyField('yt','Đã copy caption YouTube.')">📋 COPY</button></div></div>
+<div><div class="smalltitle">🖼️ Câu hook thumbnail</div><textarea id="thumbHook" class="output" placeholder="Hook thumbnail..."></textarea><div class="row"><button class="copy" onclick="copyField('thumbHook','Đã copy hook thumbnail.')">📋 COPY</button></div></div>
+</div>
+</section>
+
+<section class="card">
+<div class="title" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+⑤ Prompt tạo thumbnail 1280×720
+<button class="copy" onclick="copyThumb()">📋 COPY PROMPT</button>
+</div>
+<textarea id="thumb" class="prompt" placeholder="Prompt thumbnail..."></textarea>
+<div class="checks" style="margin-top:10px">
+<label><input type="checkbox" id="thumbText" checked onchange="refreshThumb()"> Thumbnail có vùng trống cho tiêu đề</label>
+<label><input type="checkbox" id="noText" checked onchange="refreshThumb()"> Không render chữ trong ảnh</label>
+</div>
+</section>
+
+<section class="card">
+<div class="title">⑥ 🔥 HOOK LAB — 5 góc mở đầu</div>
+<div class="hint">Tạo 5 hook khác nhau từ đúng Topic DNA. Chọn hook bạn thích rồi đưa vào Story.</div>
+<div id="hookLab" class="outputgrid"></div>
+</section>
+
+<section class="card">
+<div class="title">⑦ 🎙️ ELEVENLABS READY</div>
+<div class="grid">
+<div><label>Phong cách đọc</label><select id="voicePresetLegacy"><option>Nam trầm, từng trải</option><option>Nam buồn, chậm</option><option>Nữ trầm, sâu lắng</option><option>Trung tính, điện ảnh</option></select></div>
+<div><label>Nhịp đọc</label><select id="pacePreset"><option>Điện ảnh — tự nhiên</option><option>Chậm — nhiều khoảng nghỉ</option><option>Rất chậm — ám ảnh</option></select></div>
+</div>
+<textarea id="eleven" class="story" style="min-height:260px" placeholder="Bản sạch tối ưu cho ElevenLabs..."></textarea>
+<div class="row"><button class="copy" onclick="copyField('eleven','Đã copy bản ElevenLabs Ready.')">📋 COPY ELEVENLABS</button><button onclick="buildEleven()">↻ LÀM LẠI</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑧ 🎬 VIDEO PROMPT 9:16 — Kling / Seedance / Veo</div>
+<textarea id="videoPrompt" class="prompt" placeholder="Video prompt sẽ xuất hiện sau khi tạo Story..."></textarea>
+<div class="row"><button class="copy" onclick="copyField('videoPrompt','Đã copy Video Prompt.')">📋 COPY VIDEO PROMPT</button><button onclick="buildVideoPrompt()">↻ TẠO VIDEO PROMPT</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑨ 🖼️ IMAGE PROMPT — Facebook 4:5 / Reels 9:16</div>
+<textarea id="imagePrompt" class="prompt" placeholder="Image prompt sẽ xuất hiện sau khi tạo Story..."></textarea>
+<div class="row"><button class="copy" onclick="copyField('imagePrompt','Đã copy Image Prompt.')">📋 COPY IMAGE PROMPT</button><button onclick="buildImagePrompt()">↻ TẠO IMAGE PROMPT</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑩ 💾 PROJECT — lưu toàn bộ nội dung</div>
+<div class="row"><button class="green" onclick="saveProject()">💾 LƯU PROJECT</button><button onclick="loadLastProject()">📂 MỞ PROJECT GẦN NHẤT</button><button onclick="clearProjects()">🗑️ XÓA PROJECT</button></div>
+<div id="projectList" class="historybox">Chưa có project.</div>
+</section>
+
+<section class="card">
+<div class="title">⑪ 📅 CONTENT CALENDAR — gợi ý 7 ngày</div>
+<div id="calendar" class="outputgrid"></div>
+<div class="row"><button onclick="buildCalendar()">📅 TẠO LỊCH 7 NGÀY</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑫ Master Prompt đang dùng</div>
+<textarea id="master" class="long" readonly placeholder="Bấm XEM MASTER PROMPT để xem..."></textarea>
+<div class="row"><button class="copy" onclick="copyField('master','Đã copy master prompt.')">📋 COPY MASTER PROMPT</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑬ Chế độ AI API (tùy chọn)</div>
+<div class="grid">
+<div><label>OpenAI API Key</label><input id="apiKey" type="password" placeholder="sk-..."></div>
+<div><label>Model</label><select id="model"><option>gpt-5.6-mini</option><option>gpt-5.6</option></select></div>
+</div>
+<div class="row">
+<button class="primary" onclick="generateAI()">🤖 TẠO BẰNG AI</button>
+<button onclick="clearKey()">XÓA KEY</button>
+</div>
+<div class="hint">Nếu không có API key, app vẫn chạy bằng Story Engine offline. API key được lưu cục bộ trên trình duyệt của bạn; không nên dùng cách này cho app công khai nhiều người dùng.</div>
+</section>
+
+<section class="card">
+<div class="title">⑭ Kiểm tra chất lượng & lịch sử</div>
+<div class="hint" style="font-size:13px">
+<b>0–3s:</b> Hook dừng lướt → <b>3–15s:</b> mở vấn đề → <b>15–45s:</b> câu chuyện và chi tiết đời thường → <b>45–60s:</b> cao trào/nhận ra → <b>60–70s:</b> câu kết replay.
+<br><br>
+Nguyên tắc: mỗi câu khoảng 8–14 từ, ưu tiên câu dễ đọc, dấu câu tạo khoảng nghỉ, không sáo rỗng, không giải thích đạo lý ngay từ đầu.
+</div>
+</section>
+
+<section class="card">
+<div class="title">⑭ Kiểm tra chất lượng & lịch sử</div>
+<div class="quality" id="quality">
+<div class="qitem" id="qTopic">⏳ Chưa kiểm tra chủ đề.</div>
+<div class="qitem" id="qLength">⏳ Chưa kiểm tra độ dài.</div>
+<div class="qitem" id="qLines">⏳ Chưa kiểm tra xuống dòng.</div>
+<div class="qitem" id="qDNA">⏳ Chưa có Topic DNA.</div>
+</div>
+<div class="smalltitle" style="margin-top:14px">🗂️ Chủ đề đã dùng gần đây</div>
+<div id="historyList" class="historybox">Chưa có lịch sử.</div>
+</section>
+
+
+<section class="card">
+<div class="title">⑮ 🔥 HOOK LAB PRO — 10 HOOK</div>
+<div class="hint">Tạo 10 hook theo nhiều góc cảm xúc. Chọn một hook để đưa vào nội dung.</div>
+<div id="hookLabPro" class="v9grid"></div>
+<div class="v9toolbar"><button onclick="buildHookLabPro()">🔥 TẠO 10 HOOK</button><button class="copy" onclick="copySelectedHook()">📋 COPY HOOK ĐÃ CHỌN</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑯ 🎙️ ELEVENLABS VOICE STUDIO</div>
+<div class="grid"><div><label>Preset giọng</label><select id="voicePreset"><option>Nam trầm</option><option>Nam sâu cảm xúc</option><option>Nữ nhẹ nhàng</option><option>Nữ buồn</option></select></div><div><label>Nhịp đọc</label><select id="voicePace"><option>Chậm cảm xúc</option><option>Tự nhiên</option><option>Rất chậm, nhiều khoảng nghỉ</option></select></div></div>
+<textarea id="voiceReady" class="long" readonly placeholder="Bản thoại sạch sẽ xuất hiện ở đây..."></textarea>
+<div class="v9toolbar"><button onclick="buildVoiceReady()">🎙️ TỐI ƯU ELEVENLABS</button><button class="copy" onclick="copyField('voiceReady','Đã copy bản thoại ElevenLabs.')">📋 COPY ELEVENLABS</button></div>
+</section>
+
+<section class="card">
+<div class="title">⑰ 📦 CONTENT PACKAGE — xuất toàn bộ nội dung</div>
+<div class="v9stat"><div><b id="pkgWords">0</b>từ</div><div><b id="pkgSeconds">0s</b>thời lượng</div><div><b id="pkgHooks">10</b>hooks</div><div><b id="pkgStatus">—</b>trạng thái</div></div>
+<textarea id="packagePreview" class="output" style="min-height:260px" readonly placeholder="Content Package sẽ tự động xuất hiện sau khi tạo Story..."></textarea><div class="v9toolbar"><button class="primary" onclick="prepareAndCopyPackage()">📋 COPY ALL CONTENT</button><button onclick="prepareAndDownloadPackage()">⬇️ TẢI CONTENT .TXT</button><button onclick="preparePackage()">🔄 CẬP NHẬT PACKAGE</button></div>
+</section>
+
+
+
+<section class="card">
+<div class="title">⑱ 💾 PROJECT MANAGER PRO</div>
+<div class="grid"><div><label>Tìm Project</label><input id="projectSearch" placeholder="Tìm theo chủ đề..."></div><div><label>Tag</label><select id="projectTag"><option value="all">Tất cả</option><option>Tình yêu</option><option>Cô đơn</option><option>Trưởng thành</option><option>Gia đình</option><option>Tiền bạc</option><option>Chữa lành</option><option>Triết lý</option></select></div></div>
+<div class="v9toolbar"><button onclick="renderProjectsPro()">🔎 TÌM KIẾM</button><button onclick="exportProjects()">⬇️ XUẤT PROJECTS JSON</button><button onclick="importProjectsPrompt()">⬆️ NHẬP PROJECTS JSON</button></div>
+<div id="projectListPro" class="historybox">Chưa có project.</div>
+</section>
+
+<section class="card">
+<div class="title">⑲ 📅 CONTENT CALENDAR PRO</div>
+<div class="v9toolbar"><button onclick="buildCalendarPro(7)">7 NGÀY</button><button onclick="buildCalendarPro(30)">30 NGÀY</button><button onclick="buildCalendarPro(60)">60 NGÀY</button><button onclick="buildCalendarPro(90)">90 NGÀY</button></div>
+<div id="calendarPro" class="outputgrid"></div>
+</section>
+
+<section class="card">
+<div class="title">⑳ 📊 QUALITY DASHBOARD PRO</div>
+<div class="quality" id="qualityPro"><div class="qitem" id="qHookPro">⏳ Chưa kiểm tra Hook.</div><div class="qitem" id="qEmotionPro">⏳ Chưa kiểm tra cảm xúc.</div><div class="qitem" id="qEndingPro">⏳ Chưa kiểm tra Ending.</div><div class="qitem" id="qPackagePro">⏳ Chưa kiểm tra Content Package.</div></div>
+</section>
+
+<section class="card contact-card"><div class="title">㉑ THÔNG TIN LIÊN HỆ</div><div class="contact-grid"><div class="contact-item"><div class="contact-icon">👤</div><div><div class="contact-label">Tên</div><div class="contact-value">Dung Nguyen</div></div></div><div class="contact-item"><div class="contact-icon">🏷️</div><div><div class="contact-label">Thương hiệu</div><div class="contact-value">@dungnguyenvl</div></div></div><div class="contact-item"><div class="contact-icon">🌐</div><div><div class="contact-label">Website</div><a class="contact-link" href="https://dungnguyen.pp.ua" target="_blank" rel="noopener">dungnguyen.pp.ua</a></div></div><div class="contact-item"><div class="contact-icon">🤝</div><div><div class="contact-label">Liên hệ</div><div class="contact-value">Hợp tác • Nội dung • AI Tools</div></div></div></div><div class="contact-note">© 2026 Dung Nguyen / dungnguyenvl. All Rights Reserved.</div></section><footer>DUNGNGUYENVL AI CONTENT STUDIO V10 • Nội dung và mã nguồn thuộc Dung Nguyen.</footer>
+</div>
+
+<script>
+const categoryIdeas={
+"Tình yêu dang dở":[
+"chia tay khi vẫn còn yêu","người cũ bước vào một cuộc đời khác","một lời hứa không có ngày thực hiện",
+"cuộc gặp cuối cùng với người từng thương","tin nhắn cuối cùng chưa từng được trả lời",
+"yêu nhau nhưng không thể đi cùng nhau","một người vẫn chờ, một người đã quên",
+"ngày vô tình gặp lại người cũ","khi kỷ niệm vẫn còn nhưng người đã xa",
+"buông một người mình chưa từng hết thương"
+],
+"Trưởng thành":[
+"càng lớn càng ít muốn giải thích","sau nhiều lần tổn thương, người ta chọn im lặng",
+"những điều chỉ hiểu khi đã quá muộn","một ngày nhận ra mình không còn như trước",
+"học cách sống mà không cần ai công nhận","trưởng thành sau một lần mất tất cả",
+"khi bình yên trở thành điều xa xỉ","những cuộc trò chuyện ngày càng ít đi",
+"đến tuổi chỉ muốn một cuộc sống thật yên"
+],
+"Cô đơn":[
+"cô đơn giữa thành phố đông người","một đêm không biết gọi cho ai",
+"người luôn nói mình ổn nhưng bên trong rất mệt","một căn phòng có đủ đồ nhưng thiếu một người",
+"những ngày không ai hỏi mình có ổn không","sống một mình sau những năm tháng có đôi",
+"cảm giác bị lãng quên giữa rất nhiều người","một bữa tối chỉ có một người",
+"đêm dài của người quen với im lặng"
+],
+"Gia đình":[
+"một cuộc gọi của mẹ giữa đêm","ngày con trở về khi cha mẹ đã già",
+"bữa cơm thiếu một người","căn nhà cũ sau nhiều năm xa quê",
+"chiếc ghế mẹ vẫn để trống","người cha luôn đứng phía sau con",
+"lần cuối được nghe giọng mẹ","đứa con mải kiếm tiền quên mất một cuộc gọi",
+"ngày nhận ra cha mẹ không còn khỏe như trước",
+"một lần về quê mà mọi thứ đã khác"
+],
+"Chữa lành":[
+"học cách tha thứ cho chính mình","rời khỏi một nơi từng khiến mình tổn thương",
+"buông bỏ mà không cần oán trách","một ngày biết thương lấy bản thân",
+"chậm lại sau những năm tháng quá vội","không còn cố làm hài lòng tất cả mọi người",
+"học cách sống với những điều không thể thay đổi",
+"bình yên sau một quãng đời nhiều biến động",
+"khi mình thôi chờ một lời xin lỗi"
+],
+"Cuộc sống":[
+"người tốt đôi khi vẫn chịu thiệt","một tháng lương biến mất chỉ sau vài ngày",
+"đi làm nhiều năm nhưng vẫn không có tiền dư",
+"áp lực tiền bạc của một người trưởng thành",
+"thành công nhưng không còn thời gian cho gia đình",
+"những khoản tiền không ai nhìn thấy","một đời mưu sinh không kịp nghỉ",
+"khi đồng lương đứng yên còn mọi thứ tăng giá",
+"ngày nhận ra tiền mua được nhiều thứ nhưng không mua được thời gian",
+"một người luôn cố tỏ ra mạnh mẽ trước cuộc sống"
+],
+"Tình bạn":[
+"người bạn từng thân bỗng thành người dưng","một tình bạn kết thúc vì một lần hiểu lầm",
+"ngày gặp lại người bạn cũ sau nhiều năm","bạn bè trưởng thành rồi mỗi người một hướng",
+"người từng nghe mình khóc giờ không còn nói chuyện",
+"một cuộc hẹn cứ mãi không thể gặp","tình bạn thay đổi sau khi mỗi người có gia đình",
+"có những người chỉ đi cùng mình một đoạn đường"
+],
+"Thời gian & ký ức":[
+"một bức ảnh cũ làm cả ký ức quay về","căn nhà cũ và những người không còn ở đó",
+"mười năm sau nhìn lại chính mình","một bài hát đưa mình về một mùa cũ",
+"ngày tháng trôi nhanh hơn mình tưởng","một chiếc áo vẫn còn mùi của người cũ",
+"con đường quen nhưng người đi cùng đã khác","những điều ngày xưa tưởng sẽ kéo dài mãi",
+"khi ký ức trở thành nơi mình chỉ có thể ghé thăm"
+]
+};
+
+const categories=Object.keys(categoryIdeas);
+const categoryEl=document.getElementById("category");
+const topicEl=document.getElementById("topic");
+categories.forEach(c=>{let o=document.createElement("option");o.value=c;o.textContent=c;categoryEl.appendChild(o)});
+
+const topicHistory=JSON.parse(localStorage.getItem("story_topic_history_v4")||"[]");
+const topicHistorySet=new Set(topicHistory.map(x=>x.toLowerCase().trim()));
+
+function saveTopicHistory(topic){
+  const t=topic.trim();
+  if(!t)return;
+  const key=t.toLowerCase();
+  if(!topicHistorySet.has(key)){
+    topicHistorySet.add(key);
+    topicHistory.push(t);
+    if(topicHistory.length>2000) topicHistory.shift();
+    localStorage.setItem("story_topic_history_v4",JSON.stringify(topicHistory));
+    if(document.getElementById("historyCount")) document.getElementById("historyCount").textContent=topicHistory.length;
+  }
+}
+
+function updateTopic(t){
+  topicEl.value=t||"";
+  if(t) saveTopicHistory(t);
+}
+
+function topicAlreadyUsed(t){
+  return topicHistorySet.has(t.toLowerCase().trim());
+}
+
+function makeUniqueOfflineTopic(){
+  const cat=categoryEl.value;
+  const pool=categoryIdeas[cat]||[];
+  const prefixes=[
+    "Có một ngày","Có những đêm","Đến một lúc nào đó","Sau nhiều năm",
+    "Rồi sẽ có lúc","Người trưởng thành thường hiểu","Điều ít ai nói về",
+    "Có những người","Một ngày mình chợt nhận ra","Đau nhất là khi"
+  ];
+  const bridges=[
+    "mà mình không còn muốn giải thích","mình mới hiểu điều này",
+    "mình mới biết mình đã mệt","người ta chỉ hiểu khi đã trải qua",
+    "mọi thứ không còn giống ngày trước","không ai biết mình đã cố gắng thế nào",
+    "mình buộc phải học cách chấp nhận","mình không thể quay lại như cũ"
+  ];
+  const suffixes=[
+    "và chẳng ai hay biết","nhưng vẫn phải bước tiếp","dù trong lòng còn rất nhiều điều chưa nói",
+    "sau tất cả những gì đã xảy ra","khi mọi người đều nghĩ mình ổn",
+    "và đó là lúc mình trưởng thành","chỉ người từng trải mới hiểu"
+  ];
+
+  for(let i=0;i<300;i++){
+    const base=pick(pool);
+    const style=i%3;
+    let t;
+    if(style===0) t=prefixes[Math.floor(Math.random()*prefixes.length)]+" "+base;
+    else if(style===1) t=base.charAt(0).toUpperCase()+base.slice(1)+", "+bridges[Math.floor(Math.random()*bridges.length)];
+    else t=prefixes[Math.floor(Math.random()*prefixes.length)]+" "+base+" "+suffixes[Math.floor(Math.random()*suffixes.length)];
+    t=t.replace(/\s+/g," ").trim();
+    if(!topicAlreadyUsed(t)) return t;
+  }
+  // Fallback uses a unique sequence marker only if the very large combination pool is exhausted.
+  let n=topicHistory.length+1;
+  return "Một câu chuyện mới về "+cat.toLowerCase()+" — góc nhìn số "+n;
+}
+
+function loadTopics(){ /* intentionally empty: topic is now dynamic */ }
+categoryEl.addEventListener("change",()=>{
+  clearGeneratedContentForNewTopic();
+  setStatus("💡 Nhóm chủ đề đã đổi. Bấm 🎲 CHỦ ĐỀ TỰ ĐỘNG để tạo một chủ đề mới.");
+});
+topicEl.addEventListener("input",()=>{
+  if(generatedForTopic && topicEl.value.trim()!==generatedForTopic.trim()){
+    clearGeneratedContentForNewTopic();
+    setStatus("✏️ Chủ đề đã thay đổi. Story cũ đã được xóa; hãy bấm ✨ TẠO STORY 70S.");
+  }
+});
+document.getElementById("custom").addEventListener("input",()=>{
+  const v=document.getElementById("custom").value.trim();
+  if(v){
+    if(topicEl.value!==v) topicEl.value=v;
+    clearGeneratedContentForNewTopic();
+    setStatus("✏️ Đã dùng chủ đề riêng. Story cũ đã được xóa; hãy bấm ✨ TẠO STORY 70S.");
+  }
+});
+
+let last={topic:"",hook:"",story:""};
+let topicGenerationToken=0;
+let generatedForTopic="";
+let currentDNA=null;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function currentTopic(){
+  const mainTopic=topicEl.value.trim();
+  const customTopic=document.getElementById("custom").value.trim();
+  return mainTopic||customTopic;
+}
+function clearGeneratedContentForNewTopic(){
+  topicGenerationToken++;
+  generatedForTopic="";
+  currentDNA=null;
+  last={topic:"",hook:"",story:""};
+  ["story","fb","tt","yt","thumbHook","thumb","master","dnaCharacter","dnaSetting","dnaProblem","dnaConflict","dnaClimax","dnaMessage"].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.value="";
+  });
+  ["qTopic","qLength","qLines","qDNA"].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.className="qitem";el.textContent="⏳ Chưa có dữ liệu.";}
+  });
+  updateMeta("");
+}
+async function randomTopic(){
+  // IMPORTANT: this button ONLY creates/selects a new topic. It never generates the 70s story.
+  clearGeneratedContentForNewTopic();
+  const myTopicToken=topicGenerationToken;
+  categoryEl.selectedIndex=Math.floor(Math.random()*categories.length);
+  document.getElementById("custom").value="";
+  const old=topicEl.value;
+  const key=document.getElementById("apiKey").value.trim();
+
+  if(key){
+    setStatus("🎲 AI đang sáng tạo một chủ đề mới, không trùng lịch sử...");
+    try{
+      const r=await fetch("https://api.openai.com/v1/chat/completions",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},
+        body:JSON.stringify({
+          model:document.getElementById("model").value,
+          messages:[
+            {role:"system",content:"Bạn là máy sáng tạo chủ đề storytelling Việt Nam. Chỉ trả về đúng MỘT chủ đề, không đánh số, không ngoặc kép, không giải thích. Chủ đề phải mới, cụ thể, giàu hình ảnh, phù hợp video tâm trạng 70 giây. Không được trùng hoặc diễn đạt lại bất kỳ chủ đề nào trong danh sách lịch sử được cung cấp."},
+            {role:"user",content:`Nhóm: ${categoryEl.value}
+Góc cảm xúc: ${document.getElementById("emotion").value}
+Mức độ: ${document.getElementById("intensity").value}
+Lịch sử chủ đề đã dùng:
+${topicHistory.slice(-250).join("\n")}
+Hãy tạo một chủ đề hoàn toàn khác.`}
+          ],
+          temperature:1.15
+        })
+      });
+      if(!r.ok) throw new Error("API "+r.status);
+      const j=await r.json();
+      let t=(j.choices?.[0]?.message?.content||"").replace(/^["“”]+|["“”]+$/g,"").replace(/^\s*[-•]\s*/,"").trim();
+      if(topicGenerationToken!==myTopicToken) return;
+      if(!t || topicAlreadyUsed(t) || (old && t.toLowerCase()===old.toLowerCase())) throw new Error("Chủ đề trùng hoặc rỗng");
+      clearGeneratedContentForNewTopic();
+      updateTopic(t);
+      setStatus("✅ AI đã tạo CHỦ ĐỀ MỚI. Chưa tạo Story 70s — hãy bấm ✨ TẠO STORY 70S khi bạn muốn.");
+      return;
+    }catch(e){
+      setStatus("⚠️ AI chưa tạo được chủ đề mới. Đã chuyển sang Story Engine offline.");
+    }
+  }
+
+  if(topicGenerationToken!==myTopicToken) return;
+  const t=makeUniqueOfflineTopic();
+  updateTopic(t);
+  generatedForTopic="";
+  currentDNA=null;
+  renderHistory();
+  setStatus("🎲 Đã tạo CHỦ ĐỀ MỚI. Chưa tạo Story 70s — hãy bấm ✨ TẠO STORY 70S khi bạn muốn.");
+}
+function words(s){return s.trim()?s.trim().split(/\s+/).length:0}
+function updateMeta(s){let n=words(s);document.getElementById("wc").textContent=n+" từ";document.getElementById("sec").textContent="~"+Math.max(0,Math.round(n/2.55))+" giây"}
+function cleanSentence(s){return s.replace(/\s+/g," ").trim()}
+function makeHook(t){
+const hooks=[
+"Điều đau nhất không phải là mất đi một người.",
+"Có một sự thật, càng lớn người ta càng hiểu.",
+"Đừng vội nghĩ người tốt lúc nào cũng được đối xử tử tế.",
+"Chúng ta thường chỉ hiểu một điều sau khi đã quá muộn.",
+"Có những nỗi buồn không ai nhìn thấy.",
+"Ngày còn trẻ, tôi từng nghĩ cuộc đời sẽ khác.",
+"Bạn có từng tự hỏi vì sao mình luôn là người chịu thiệt?"
+];
+return pick(hooks)+" "+t.toLowerCase()+"...";
+}
+function buildTopicDNA(t){
+  const x=cleanSentence(t);
+  const low=x.toLowerCase();
+  const has=(arr)=>arr.some(k=>low.includes(k));
+  let type="general", character="một người trưởng thành", setting="một ngày rất bình thường", problem=x, conflict="muốn thay đổi nhưng bị giữ lại bởi hoàn cảnh", climax="nhận ra sự thật mà trước đó luôn né tránh", message="bình yên bắt đầu khi mình dám nhìn thẳng vào điều đã xảy ra";
+
+  if(has(["mẹ","cha","bố","ba","gia đình","cha mẹ","con cái","quê"])){
+    type="family"; character="một người con và người thân trong gia đình"; setting="căn nhà quen thuộc, một cuộc gọi hoặc một buổi tối ở quê";
+    problem=x; conflict="thời gian, khoảng cách và những điều chưa kịp nói"; climax="nhận ra gia đình không thể chờ mình mãi";
+    message="đừng để yêu thương trở thành điều chỉ còn biết tiếc nuối";
+  } else if(has(["chia tay","người cũ","tình yêu","người yêu","yêu nhau","vợ","chồng","hôn nhân","rời đi"])){
+    type="love"; character="một người vẫn còn tình cảm với người đã rời đi"; setting="một nơi từng rất quen, thường là căn phòng, con đường hoặc đêm mưa";
+    problem=x; conflict="còn thương nhưng không thể tiếp tục như trước"; climax="hiểu rằng yêu một người không đồng nghĩa với giữ được họ";
+    message="có những tình yêu cần được buông xuống để cả hai được bình yên";
+  } else if(has(["lương","tiền","nợ","công việc","thất nghiệp","đi làm","mưu sinh","chi phí","áp lực tiền"])){
+    type="money"; character="một người đi làm đang gánh nhiều trách nhiệm"; setting="căn phòng sau giờ làm, quán ăn hoặc trên đường về nhà";
+    problem=x; conflict="thu nhập có hạn nhưng trách nhiệm và chi phí không ngừng tăng"; climax="nhận ra mình không thất bại, mình chỉ đang quá tải";
+    message="đừng vội phán xét một người khi chưa biết họ đang gánh bao nhiêu";
+  } else if(has(["cô đơn","một mình","đêm","thành phố","không ai","im lặng","lạc lõng"])){
+    type="lonely"; character="một người sống giữa thành phố nhưng thiếu một nơi để được thấu hiểu"; setting="căn phòng yên lặng vào ban đêm";
+    problem=x; conflict="bên ngoài vẫn bình thường nhưng bên trong ngày càng trống rỗng"; climax="nhận ra mình phải học cách ở bên chính mình";
+    message="cô đơn không đáng sợ bằng việc đánh mất chính mình";
+  } else if(has(["trưởng thành","lớn lên","tuổi trẻ","thời gian","thay đổi","buông bỏ","chấp nhận"])){
+    type="growth"; character="một người đã đi qua nhiều lần mất mát và thay đổi"; setting="một buổi tối yên tĩnh, nơi ký ức quay về";
+    problem=x; conflict="muốn hiểu và sửa lại quá khứ nhưng thời gian không quay ngược"; climax="chấp nhận rằng mình không thể thay đổi những gì đã qua";
+    message="trưởng thành là biết điều gì nên giữ và điều gì nên buông";
+  } else if(has(["bạn bè","tình bạn","phản bội","thất vọng","lợi dụng"])){
+    type="friendship"; character="một người từng đặt rất nhiều niềm tin vào bạn bè"; setting="một cuộc trò chuyện, quán cà phê hoặc tin nhắn lúc khuya";
+    problem=x; conflict="sự chân thành không được đáp lại như mình từng nghĩ"; climax="nhận ra không phải ai cũng có cách đối xử giống mình";
+    message="vẫn tử tế, nhưng học cách đặt đúng người vào đúng vị trí";
+  }
+  return {type,topic:x,character,setting,problem,conflict,climax,message};
+}
+function setDNA(d){
+  currentDNA=d;
+  const map={dnaCharacter:d.character,dnaSetting:d.setting,dnaProblem:d.problem,dnaConflict:d.conflict,dnaClimax:d.climax,dnaMessage:d.message};
+  Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v});
+  const q=document.getElementById("qDNA"); if(q){q.className="qitem ok";q.textContent="🧬 Topic DNA đã sẵn sàng: "+d.type+" • 6/6 thành phần."}
+}
+function makeStory(t){
+  const d=currentDNA && currentDNA.topic===cleanSentence(t) ? currentDNA : buildTopicDNA(t);
+  setDNA(d);
+  const topic=d.topic;
+  const hookTemplates=[
+    `Có một sự thật về "${topic}"... ít ai dám nói.`,
+    `Tôi từng nghĩ "${topic}" chỉ là một chuyện nhỏ.`,
+    `Đau nhất về "${topic}"... không phải điều bạn nghĩ.`,
+    `Nếu bạn từng trải qua "${topic}"... hãy nghe hết câu chuyện này.`,
+    `Có những chuyện như "${topic}"... chỉ người từng trải mới hiểu.`
+  ];
+  const hook=pick(hookTemplates);
+  const detailByType={
+    family:`Tôi cứ nghĩ... chỉ cần bận xong rồi sẽ gọi về.
+Nhưng thời gian không bao giờ đứng lại để chờ mình.
+Có những câu hỏi rất đơn giản... mình lại để đến ngày mai.
+Đến lúc muốn hỏi... người cần hỏi đã khác.`,
+    love:`Tôi từng nghĩ... chỉ cần còn thương là còn cơ hội.
+Nhưng mỗi ngày trôi qua... khoảng cách lại lớn thêm.
+Tin nhắn thưa dần.
+Những cuộc gọi cũng ngắn hơn.
+Rồi một ngày... người từng rất gần trở thành người xa nhất.`,
+    money:`Tôi từng nghĩ... chỉ cần cố thêm một chút sẽ ổn.
+Nhưng tiền nhà vẫn đến.
+Tiền điện vẫn đến.
+Những khoản phải lo cho gia đình... cũng không chờ mình.
+Mình làm nhiều hơn... nhưng cảm giác vẫn chẳng đủ.`,
+    lonely:`Ban ngày... tôi vẫn nói chuyện với rất nhiều người.
+Vẫn cười.
+Vẫn làm việc.
+Vẫn trả lời rằng... mình ổn.
+Nhưng khi đêm xuống... căn phòng lại trở nên quá yên.`,
+    growth:`Ngày còn trẻ... tôi muốn mọi chuyện phải có câu trả lời.
+Ai sai... phải xin lỗi.
+Ai rời đi... phải giải thích.
+Nhưng càng lớn... tôi càng hiểu có những chuyện không cần lời giải.`,
+    friendship:`Ngày trước... tôi nghĩ bạn bè chỉ cần thật lòng.
+Ai cần... mình có mặt.
+Ai buồn... mình lắng nghe.
+Nhưng rồi có một ngày... tôi nhận ra sự chân thành cũng cần đúng người.`,
+    general:`Ban đầu... tôi cứ nghĩ mình có thể chịu thêm.
+Thêm một chút nữa.
+Thêm một lần nữa.
+Nhưng những điều nhỏ bé... nếu giữ quá lâu sẽ thành một nỗi mệt rất lớn.`
+  };
+  const transition={
+    family:`"${topic}" khiến tôi bắt đầu nhìn lại những lần mình đã hẹn lại.
+Tôi mới hiểu... mình không thiếu tình thương.
+Mình chỉ quá quen với việc nghĩ rằng ngày mai vẫn còn.`,
+    love:`"${topic}" khiến tôi hiểu điều đau nhất.
+Không phải người ấy thay đổi.
+Mà là hai người đã không còn đi cùng một hướng.
+Mình càng níu... cả hai càng mệt.`,
+    money:`"${topic}" khiến tôi hiểu một điều rất thật.
+Có người không mua những thứ họ thích... vì họ còn quá nhiều thứ phải lo.
+Đằng sau một người luôn nói "không sao"... có thể là cả một tháng đầy áp lực.`,
+    lonely:`"${topic}" khiến tôi hiểu rằng im lặng cũng có trọng lượng.
+Có những đêm... mình không cần lời khuyên.
+Chỉ cần một người thật sự hỏi... hôm nay có ổn không.`,
+    growth:`"${topic}" khiến tôi thôi cố giải thích mọi thứ.
+Có những người chỉ hiểu mình... khi chính họ trải qua.
+Có những chuyện càng đào sâu... càng làm mình mệt.`,
+    friendship:`"${topic}" khiến tôi ngừng hỏi ai đúng ai sai.
+Tôi chỉ nhìn vào cách họ có mặt... khi mình không còn giá trị để họ cần.
+Và câu trả lời... đôi khi rất rõ.`,
+    general:`"${topic}" khiến tôi nhận ra vấn đề không nằm ở việc mình yếu.
+Mình chỉ đã giữ quá nhiều thứ... quá lâu.
+Đến lúc cơ thể và trái tim cùng nói... rằng đủ rồi.`
+  };
+  const peak={
+    family:`Đêm đó... tôi nhìn điện thoại rất lâu.
+Muốn gọi về.
+Nhưng lại sợ làm phiền.
+Rồi tôi hiểu... điều đáng sợ nhất không phải một cuộc gọi muộn.
+Mà là một ngày... mình không còn cơ hội để gọi nữa.`,
+    love:`Có một khoảnh khắc... tôi thôi kiểm tra điện thoại.
+Không phải vì hết thương.
+Mà vì tôi hiểu... người muốn ở lại sẽ không để mình phải đoán.
+Đó là lúc tôi bắt đầu buông.`,
+    money:`Có tháng... tôi nhìn số dư rồi ngồi im rất lâu.
+Không biết nên trả khoản nào trước.
+Lúc ấy tôi mới hiểu... người trưởng thành đôi khi không cần ai dạy cách mạnh mẽ.
+Họ chỉ cần một ngày... được phép mệt.`,
+    lonely:`Tôi ngồi trong căn phòng tối... và lần đầu không chạy khỏi sự im lặng.
+Tôi nghe chính mình.
+Và nhận ra... người mình chờ lâu nhất...
+có lẽ là chính mình.`,
+    growth:`Tôi không còn muốn thắng trong những cuộc tranh luận cũ.
+Không còn cần ai hiểu mình bằng mọi giá.
+Bởi có những lúc... bình yên quan trọng hơn một lời giải thích.`,
+    friendship:`Tôi xóa một tin nhắn đã viết rất lâu.
+Không gửi nữa.
+Không phải vì tôi không đau.
+Mà vì tôi không muốn tiếp tục xin một vị trí... trong lòng một người không còn cần mình.`,
+    general:`Khoảnh khắc ấy... tôi thôi trách mình.
+Có những chuyện xảy ra... không phải để mình hiểu ngay.
+Mà để sau này... mình biết cách sống khác đi.`
+  };
+  const endingByType={
+    family:`Nếu hôm nay bạn còn có thể gọi về... hãy gọi.
+Nếu còn có thể ôm một người thân... hãy ôm.
+Đừng để một ngày bình thường...
+trở thành ngày cuối cùng mà mình ước được quay lại.`,
+    love:`Nếu còn thương... hãy thương bằng cách tôn trọng sự lựa chọn.
+Nếu phải rời đi... hãy rời đi trong bình yên.
+Có những người... không đi cùng mình đến cuối.
+Nhưng vẫn xứng đáng được nhớ bằng điều đẹp nhất.`,
+    money:`Nếu bạn đang mệt vì tiền... đừng vội nghĩ mình vô dụng.
+Bạn đang cố gắng.
+Bạn đang gánh trách nhiệm.
+Và có những ngày... vượt qua được thôi cũng đã rất đáng tự hào.`,
+    lonely:`Nếu đêm nay bạn đang một mình... đừng vội tìm một người để lấp khoảng trống.
+Hãy ngồi lại với chính mình.
+Rồi bạn sẽ hiểu...
+bình yên không phải lúc nào cũng cần một người khác.`,
+    growth:`Có lẽ trưởng thành không phải là không còn đau.
+Mà là biết mình đau... nhưng vẫn bước tiếp.
+Biết buông đúng lúc.
+Và biết giữ lại... những gì thật sự xứng đáng.`,
+    friendship:`Bạn vẫn có thể tử tế.
+Chỉ cần đừng trao hết lòng tin cho tất cả mọi người.
+Ai ở lại... mình trân trọng.
+Ai rời đi... mình học cách chấp nhận.`,
+    general:`Sau cùng... mình không cần trở thành một người khác.
+Chỉ cần sống thật hơn với chính mình.
+Và nhớ rằng...
+một ngày tồi tệ không phải là cả cuộc đời.`
+  };
+  const storyParts=[
+    `[HOOK — 0s → 3s]\n\n${hook}`,
+    `[PHẦN 1 — 4s → 20s]\n\n${detailByType[d.type]||detailByType.general}`,
+    `[PHẦN 2 — 21s → 38s]\n\n${transition[d.type]||transition.general}`,
+    `[CAO TRÀO — 39s → 56s]\n\n${peak[d.type]||peak.general}`,
+    `[KẾT — 57s → 70s]\n\n${endingByType[d.type]||endingByType.general}`
+  ];
+  return storyParts.join("\n\n");
+}
+
+function captions(t,story){
+  const d=currentDNA||buildTopicDNA(t);
+  const h=last.hook||makeHook(t);
+  const clean=stripStoryLabels(story).split("\n").filter(Boolean).slice(0,3).join(" ");
+  return {
+    fb:`${h}\n\n${clean}\n\nNếu câu chuyện này chạm đến một phần ký ức của bạn, hãy để lại một ❤️ hoặc một dòng chia sẻ.\n\n#tamtrang #storytelling #truongthanh #chualanh #dungnguyenvl`,
+    tt:`${h}\n\n${clean}\n\nBạn đã từng trải qua điều này chưa? 🥀\n\n#tamtrang #storytelling #fyp #chualanh #dungnguyenvl`,
+    yt:`${t} — một câu chuyện về ${d.noun||"những điều người trưởng thành thường giữ trong lòng"}.\n\n${clean}\n\nNếu câu chuyện chạm đến bạn, hãy để lại cảm nhận. 🌙\n\n#tamtrang #storytelling #truongthanh #chualanh #dungnguyenvl`
+  };
+}
+function makeThumb(t){
+const hook=document.getElementById("thumbHook").value||t;
+const blank=document.getElementById("thumbText").checked;
+const noText=document.getElementById("noText").checked;
+return `Create ONE finished cinematic photorealistic YouTube/Facebook storytelling thumbnail.
+
+SIZE: 1280x720 px
+ASPECT RATIO: 16:9
+
+STORY THEME:
+${t}
+
+TOPIC DNA:
+Character: ${currentDNA?.character||""}
+Setting: ${currentDNA?.setting||""}
+Problem: ${currentDNA?.problem||""}
+Conflict: ${currentDNA?.conflict||""}
+Climax: ${currentDNA?.climax||""}
+Message: ${currentDNA?.message||""}
+
+THUMBNAIL HOOK / TITLE IDEA:
+${hook}
+
+VISUAL DIRECTION:
+Create a powerful, emotionally precise Vietnamese cinematic scene that communicates the story without needing explanation. One clear human focal point. Mature emotional storytelling. Realistic Vietnamese environment. Natural body language. Subtle details that imply the backstory. Cinematic photorealism, dark moody atmosphere, realistic skin and clothing, soft practical lighting, deep shadows, atmospheric depth, shallow depth of field, premium movie still quality, restrained emotion, realistic lens and composition.
+
+COMPOSITION:
+Strong visual hierarchy. Subject slightly off-center. ${blank?"Leave a clean, darker negative-space area for a short thumbnail title, while keeping the subject visually dominant.":"Do not reserve an artificial text box; keep the composition naturally balanced."}
+Use foreground and background depth. Avoid clutter. Make the image readable at small thumbnail size.
+
+TEXT RULE:
+${noText?"IMAGE ONLY. DO NOT RENDER ANY TEXT, LETTERS, WORDS, LOGOS, CAPTIONS OR WATERMARKS.":"If text is generated, keep it minimal, large and perfectly readable; however, prioritize the cinematic image."}
+
+NEGATIVE:
+No cartoon, anime, illustration, fantasy, plastic skin, excessive HDR, oversaturation, distorted anatomy, duplicate people, extra fingers, unreadable signs, random typography, fake logos, watermark.`;
+}
+function refreshThumb(){if(last.topic)document.getElementById("thumb").value=makeThumb(last.topic)}
+function makeMasterPrompt(){
+const t=currentTopic();
+document.getElementById("master").value=`Bạn là biên kịch chuyên tạo nội dung Facebook Reels/TikTok/YouTube Shorts viral về trưởng thành, cô đơn, chữa lành, tình yêu dang dở, triết lý cuộc sống và những câu nói để đời.
+
+CHỦ ĐỀ:
+${t}
+
+TOPIC DNA:
+- Nhân vật: ${currentDNA?.character||""}
+- Bối cảnh: ${currentDNA?.setting||""}
+- Vấn đề: ${currentDNA?.problem||""}
+- Xung đột: ${currentDNA?.conflict||""}
+- Cao trào: ${currentDNA?.climax||""}
+- Thông điệp: ${currentDNA?.message||""}
+
+NGUYÊN TẮC CHỦ ĐỀ:
+- Chủ đề là chủ đề động, không lấy từ danh sách cố định.
+- Nếu người dùng yêu cầu chủ đề tự động, hãy tạo một chủ đề hoàn toàn mới dựa trên nhóm chủ đề và cảm xúc.
+- Không lặp lại chủ đề đã xuất hiện trước đó.
+
+Hãy viết MỘT STORYTELLING TIẾNG VIỆT khoảng 70 giây, mục tiêu 155–190 từ, tối ưu cho voice-over ElevenLabs.
+
+ĐỊNH DẠNG BẮT BUỘC — XUỐNG DÒNG NHƯ KỊCH BẢN VOICE-OVER:
+[HOOK — 0s → 3s]
+
+1–2 câu hook, mỗi câu một dòng.
+
+[PHẦN 1 — 4s → 20s]
+
+Mỗi câu một dòng.
+
+[PHẦN 2 — 21s → 38s]
+
+Mỗi câu một dòng.
+
+[CAO TRÀO — 39s → 56s]
+
+Mỗi câu một dòng.
+
+[KẾT — 57s → 70s]
+
+Mỗi câu một dòng.
+
+QUY TẮC VOICE-OVER:
+1. Hook mạnh trong 2 giây đầu.
+2. Mỗi câu ưu tiên 5–14 từ; câu dài phải tách thành nhiều dòng.
+3. Mỗi ý quan trọng một dòng riêng.
+4. Dùng dấu ... để tạo khoảng nghỉ tự nhiên ở những điểm cần thiết.
+5. Mỗi đoạn cách nhau một dòng trống.
+6. Tuyệt đối không viết thành một đoạn văn dài.
+7. Không emoji trong STORY.
+8. Văn phong như lời tâm sự thật của người từng trải.
+9. Có mở vấn đề → phát triển → cao trào → nhận ra → câu kết khiến người xem replay.
+10. Không thêm giải thích ngoài 5 phần.
+
+SAU STORY TẠO:
+- Caption Facebook + emoji + đúng 5 hashtag.
+- Caption TikTok + emoji + đúng 5 hashtag.
+- Caption YouTube + emoji + đúng 5 hashtag.
+- Một câu HOOK THUMBNAIL ngắn, dễ đọc.
+
+GÓC CẢM XÚC: ${document.getElementById("emotion").value}
+GIỌNG KỂ: ${document.getElementById("voice").value}
+MỨC ĐỘ: ${document.getElementById("intensity").value}`;
+setStatus("🧠 Đã tạo master prompt theo định dạng voice-over ElevenLabs.");
+}
+
+function generate(){
+  let t=currentTopic();
+  if(!t){randomTopic(); return}
+  t=cleanSentence(t);
+  clearGeneratedContentForNewTopic();
+  const syncTopicToken=topicGenerationToken;
+  topicEl.value=t;
+  const dna=buildTopicDNA(t);
+  setDNA(dna);
+  currentDNA=dna;
+  const hook=makeHook(t),s=makeStory(t);
+  if(syncTopicToken!==topicGenerationToken || currentTopic()!==t){
+    setStatus("ℹ️ Chủ đề đã thay đổi nên kết quả cũ không được hiển thị.");
+    return;
+  }
+  last={topic:t,hook:hook,story:s};
+  generatedForTopic=t;
+  saveTopicHistory(t);
+  document.getElementById("story").value=s;
+  const c=captions(t,s);
+  document.getElementById("fb").value=c.fb;
+  document.getElementById("tt").value=c.tt;
+  document.getElementById("yt").value=c.yt;
+  document.getElementById("thumbHook").value=hook.replace(/\.\.\.$/,"");
+  document.getElementById("thumb").value=makeThumb(t);
+  makeMasterPrompt();
+  buildHookLab(t); buildEleven(); buildVideoPrompt(); buildImagePrompt(); buildCalendar(); saveProject(true);
+  updateMeta(s);
+  runQualityChecks(t,s);
+  setStatus("✅ Story 70s mới đã được xây dựng từ Topic DNA và khớp chủ đề hiện tại.");
+}
+
+
+function runQualityChecks(topic,story){
+  const qTopic=document.getElementById("qTopic"), qLength=document.getElementById("qLength"), qLines=document.getElementById("qLines");
+  const plain=stripStoryLabels(story);
+  const wc=words(plain);
+  const secs=Math.round((wc/2.45));
+  const matches=storyMatchesTopic(topic,story);
+  if(qTopic){qTopic.className="qitem "+(matches?"ok":"warn");qTopic.textContent=(matches?"✅":"⚠️")+" Chủ đề ↔ Story: "+(matches?"KHỚP":"CẦN KIỂM TRA")+" • “"+topic+"”";}
+  if(qLength){const ok=wc>=145&&wc<=195;qLength.className="qitem "+(ok?"ok":"warn");qLength.textContent=(ok?"✅":"⚠️")+` Độ dài: ${wc} từ • ~${secs}s • mục tiêu 155–190 từ.`;}
+  if(qLines){const lines=plain.split(/\n/).filter(x=>x.trim());const long=lines.filter(x=>x.trim().split(/\s+/).length>16).length;const ok=long<=2;qLines.className="qitem "+(ok?"ok":"warn");qLines.textContent=(ok?"✅":"⚠️")+` Nhịp đọc: ${lines.length} dòng • ${long} dòng >16 từ.`;}
+  renderHistory();
+}
+function renderHistory(){
+  const el=document.getElementById("historyList");
+  if(!el)return;
+  const arr=topicHistory.slice(-20).reverse();
+  el.innerHTML=arr.length?arr.map((x,i)=>`<div>${i+1}. ${x.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>`).join(""):"Chưa có lịch sử.";
+}
+
+function topicKeywords(t){
+  return cleanSentence(t).toLowerCase()
+    .replace(/[“”"'.,!?;:()[\]{}]/g," ")
+    .split(/\s+/)
+    .filter(w=>w.length>=3 && !["những","người","một","điều","khi","đến","và","với","cho","trong","của","mình","tôi","là","càng","sau","như","đã","không","chỉ"].includes(w));
+}
+function storyMatchesTopic(topic, story){
+  const kws=topicKeywords(topic);
+  const s=story.toLowerCase();
+  if(!kws.length) return true;
+  const hits=kws.filter(k=>s.includes(k)).length;
+  return hits>=Math.min(2, kws.length) || s.includes(topic.toLowerCase());
+}
+
+async function generateAI(){
+const key=document.getElementById("apiKey").value.trim();
+if(!key){setStatus("⚠️ Chưa có API key. App sẽ dùng Story Engine offline.");generate();return}
+const t=currentTopic();if(!t){setStatus("⚠️ Hãy chọn hoặc nhập chủ đề.");return}
+const storyToken=topicGenerationToken;
+setStatus("⏳ Đang tạo kịch bản 5 đoạn bằng AI...");
+const system=`Bạn là biên kịch storytelling viral bằng tiếng Việt cho Facebook Reels/TikTok/YouTube Shorts.
+
+MỤC TIÊU: tạo một câu chuyện 70 giây RIÊNG BIỆT, bám sát tuyệt đối CHỦ ĐỀ DUY NHẤT được cung cấp.
+
+TRƯỚC KHI VIẾT STORY, HÃY XÂY DỰNG TOPIC DNA gồm:
+character, setting, problem, conflict, climax, message.
+Sau đó dùng chính 6 thành phần này để xây story. Không được dùng khung story chung chung.
+
+QUY TẮC:
+- Hook phải liên quan trực tiếp đến chủ đề.
+- Mỗi phần phải có chi tiết thuộc đúng chủ đề.
+- Không chuyển sang chủ đề khác.
+- Không sao chép nội dung trước đó.
+- Story 155-190 từ.
+- 5 phần: hook, part1, part2, climax, ending.
+- Mỗi câu 5-14 từ, mỗi câu một dòng.
+- Có dòng trống giữa các ý để ElevenLabs tạo nhịp nghỉ.
+- Không emoji trong story.
+- Có cao trào và câu kết khiến người xem suy nghĩ/replay.
+- Caption cũng phải đúng chủ đề và có đúng 5 hashtag.
+
+Trả JSON duy nhất:
+{
+"dna":{"character":"","setting":"","problem":"","conflict":"","climax":"","message":""},
+"hook":"","part1":"","part2":"","climax":"","ending":"",
+"facebook":"","tiktok":"","youtube":"","thumbnail_hook":""
+}`;
+try{
+const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},body:JSON.stringify({model:document.getElementById("model").value,messages:[{role:"system",content:system},{role:"user",content:`CHỦ ĐỀ DUY NHẤT:
+${t}
+
+Nhóm chủ đề: ${document.getElementById("category").value}
+Góc cảm xúc: ${document.getElementById("emotion").value}
+Giọng kể: ${document.getElementById("voice").value}
+Mức độ: ${document.getElementById("intensity").value}
+
+Hãy viết một câu chuyện hoàn toàn mới từ chính chủ đề này. Nếu chủ đề là "một tháng lương biến mất chỉ sau vài ngày", câu chuyện phải có các chi tiết về thu nhập, chi phí, trách nhiệm hoặc áp lực tài chính; không được biến thành câu chuyện chia tay. Nếu chủ đề là gia đình, phải có quan hệ gia đình và tình huống cụ thể tương ứng.
+
+Tự kiểm tra trước khi trả JSON:
+- DNA có mô tả đúng chủ đề không?
+- Story có thể nhận ra chủ đề chỉ bằng nội dung không?
+- Không có đoạn nào là triết lý chung chung thay cho câu chuyện cụ thể?
+- Không có nội dung sao chép từ chủ đề khác?`}],temperature:.9})});
+if(!r.ok)throw new Error("API "+r.status);
+const j=await r.json(),raw=j.choices?.[0]?.message?.content||"";
+const obj=JSON.parse(raw.replace(/^```json\s*/,"").replace(/\s*```$/, ""));
+const aiDNA=obj.dna||buildTopicDNA(t);
+aiDNA.topic=t;
+setDNA(aiDNA);
+currentDNA=aiDNA;
+const story=`[HOOK — 0s → 3s]\n\n${obj.hook.trim()}\n\n[PHẦN 1 — 4s → 20s]\n\n${obj.part1.trim()}\n\n[PHẦN 2 — 21s → 38s]\n\n${obj.part2.trim()}\n\n[CAO TRÀO — 39s → 56s]\n\n${obj.climax.trim()}\n\n[KẾT — 57s → 70s]\n\n${obj.ending.trim()}`;
+if(storyToken!==topicGenerationToken || currentTopic()!==t){
+  setStatus("ℹ️ Chủ đề đã thay đổi nên kết quả AI cũ được bỏ qua.");
+  return;
+}
+last={topic:t,hook:obj.hook,story:story};
+generatedForTopic=t;
+document.getElementById("story").value=story;
+document.getElementById("fb").value=obj.facebook;document.getElementById("tt").value=obj.tiktok;document.getElementById("yt").value=obj.youtube;document.getElementById("thumbHook").value=obj.thumbnail_hook;
+document.getElementById("thumb").value=makeThumb(t);makeMasterPrompt();updateMeta(stripStoryLabels(story));runQualityChecks(t,story);
+setStatus("✅ AI đã tạo Story 5 đoạn KHỚP CHỦ ĐỀ hiện tại + tối ưu ElevenLabs + caption + thumbnail.");
+}catch(e){setStatus("❌ Không gọi được AI: "+e.message+" — đã chuyển sang Story Engine offline.");generate()}
+}
+
+function buildHookLab(t){
+  const d=currentDNA||buildTopicDNA(t); const base=cleanSentence(t);
+  const hooks=[
+    `Có một điều về “${base}” mà nhiều người chỉ hiểu sau khi trải qua.`,
+    `Tôi từng nghĩ “${base}” chỉ là chuyện của người khác...`,
+    `Đau nhất không phải “${base}”, mà là điều xảy ra sau đó.`,
+    `Nếu bạn đang “${base}”, có lẽ bạn sẽ hiểu câu chuyện này.`,
+    `Có những ngày, “${base}” khiến người ta im lặng rất lâu.`
+  ];
+  document.getElementById('hookLab').innerHTML=hooks.map((h,i)=>`<div><div class="smalltitle">HOOK ${i+1}</div><textarea id="hook${i}" class="output" style="min-height:120px">${h}</textarea><div class="row"><button class="copy" onclick="copyField('hook${i}','Đã copy Hook ${i+1}.')">📋 COPY</button><button onclick="useLegacyHook(${i})">DÙNG HOOK NÀY</button></div></div>`).join('');
+}
+function buildEleven(){
+  const raw=stripStoryLabels(document.getElementById('story').value||''); if(!raw)return;
+  let s=raw.replace(/\n{3,}/g,'\n\n').replace(/[ ]{2,}/g,' ');
+  const pace=document.getElementById('pacePreset')?.value||'';
+  if(pace.includes('Chậm')||pace.includes('Rất chậm')) s=s.replace(/([.!?…])\s+/g,'$1\n\n');
+  document.getElementById('eleven').value=s.trim();
+}
+function buildVideoPrompt(){
+ const t=currentTopic(); if(!t)return; const d=currentDNA||buildTopicDNA(t); const story=stripStoryLabels(document.getElementById('story').value||'');
+ document.getElementById('videoPrompt').value=`Create a 30-second cinematic photorealistic vertical video based ONLY on this story.
+
+TOPIC: ${t}
+
+TOPIC DNA:
+Character: ${d.character}
+Setting: ${d.setting}
+Problem: ${d.problem}
+Conflict: ${d.conflict}
+Climax: ${d.climax}
+Message: ${d.message}
+
+STORY CONTEXT:
+${story}
+
+FORMAT:
+9:16 vertical, 30fps, 2K, cinematic photorealism.
+Vietnamese environment, natural human behavior, realistic clothing and locations.
+Dark moody emotional atmosphere, subtle film grain, realistic practical lighting, deep shadows, atmospheric depth, shallow depth of field.
+One continuous coherent visual story. Keep the same character, clothing and environment throughout. No random scene changes.
+Use slow controlled camera movement, gentle push-in, subtle handheld realism and emotionally meaningful framing.
+No dialogue. No subtitles. No text. No logos. No watermark.
+Music: soft melancholic instrumental, restrained piano/ambient texture, emotional but not dramatic.
+
+NEGATIVE: cartoon, anime, fantasy, plastic skin, excessive HDR, oversaturation, distorted anatomy, duplicate people, extra fingers, random objects, text, subtitles, logos, watermark, abrupt transitions.`;
+}
+function buildImagePrompt(){
+ const t=currentTopic(); if(!t)return; const d=currentDNA||buildTopicDNA(t);
+ document.getElementById('imagePrompt').value=`Create ONE cinematic photorealistic emotional image based ONLY on this topic and Topic DNA.
+
+TOPIC: ${t}
+CHARACTER: ${d.character}
+SETTING: ${d.setting}
+PROBLEM: ${d.problem}
+CONFLICT: ${d.conflict}
+CLIMAX: ${d.climax}
+MESSAGE: ${d.message}
+
+Create a mature Vietnamese cinematic scene with one clear emotional focal point. Realistic body language, natural Vietnamese environment, dark moody atmosphere, realistic lighting, deep shadows, atmospheric depth, subtle film grain, shallow depth of field, premium movie still quality.
+
+OUTPUT OPTIONS:
+Facebook Feed: 1080x1350, 4:5.
+Reels/Shorts background: 1080x1920, 9:16.
+
+Keep composition clean and emotionally readable. Leave tasteful negative space for typography if needed.
+DO NOT RENDER TEXT, LETTERS, WORDS, LOGOS, CAPTIONS OR WATERMARKS.
+NEGATIVE: cartoon, anime, illustration, fantasy, plastic skin, excessive HDR, oversaturation, distorted anatomy, duplicate people, extra fingers, random typography, fake logos, watermark.`;
+}
+function projectData(){return {topic:currentTopic(),dna:currentDNA,story:document.getElementById('story').value,fb:document.getElementById('fb').value,tt:document.getElementById('tt').value,yt:document.getElementById('yt').value,thumbHook:document.getElementById('thumbHook').value,thumb:document.getElementById('thumb').value,video:document.getElementById('videoPrompt').value,image:document.getElementById('imagePrompt').value,eleven:document.getElementById('eleven').value,master:document.getElementById('master').value,time:new Date().toLocaleString('vi-VN')}}
+function saveProject(silent=false){const p=projectData();if(!p.topic)return;let arr=JSON.parse(localStorage.getItem('dungnguyen_projects_v8')||'[]');arr=arr.filter(x=>x.topic!==p.topic);arr.push(p);arr=arr.slice(-50);localStorage.setItem('dungnguyen_projects_v8',JSON.stringify(arr));renderProjects();if(!silent)setStatus('💾 Đã lưu toàn bộ Project.');}
+function renderProjects(){const el=document.getElementById('projectList');if(!el)return;const arr=JSON.parse(localStorage.getItem('dungnguyen_projects_v8')||'[]').slice().reverse();el.innerHTML=arr.length?arr.map((p,i)=>`<div style="padding:6px 0;border-bottom:1px solid #202735">${i+1}. <b>${String(p.topic).replace(/</g,'&lt;')}</b> <span style="color:#667184">— ${p.time}</span></div>`).join(''):'Chưa có project.'}
+function loadLastProject(){const arr=JSON.parse(localStorage.getItem('dungnguyen_projects_v8')||'[]');const p=arr[arr.length-1];if(!p){setStatus('⚠️ Chưa có Project.');return}document.getElementById('topic').value=p.topic;currentDNA=p.dna||buildTopicDNA(p.topic);setDNA(currentDNA);document.getElementById('story').value=p.story||'';document.getElementById('fb').value=p.fb||'';document.getElementById('tt').value=p.tt||'';document.getElementById('yt').value=p.yt||'';document.getElementById('thumbHook').value=p.thumbHook||'';document.getElementById('thumb').value=p.thumb||'';document.getElementById('videoPrompt').value=p.video||'';document.getElementById('imagePrompt').value=p.image||'';document.getElementById('eleven').value=p.eleven||'';document.getElementById('master').value=p.master||'';last={topic:p.topic,hook:p.thumbHook,story:p.story};updateMeta(stripStoryLabels(p.story||''));runQualityChecks(p.topic,p.story||'');setStatus('📂 Đã mở Project gần nhất.');}
+function clearProjects(){localStorage.removeItem('dungnguyen_projects_v8');renderProjects();setStatus('🗑️ Đã xóa các Project đã lưu.');}
+function buildCalendar(){const days=['THỨ 2','THỨ 3','THỨ 4','THỨ 5','THỨ 6','THỨ 7','CHỦ NHẬT'];const themes=['Tình yêu dang dở','Cô đơn','Gia đình','Trưởng thành','Tiền bạc & áp lực','Chữa lành','Triết lý cuộc sống'];document.getElementById('calendar').innerHTML=days.map((d,i)=>`<div class="qitem"><b>${d}</b><br>${themes[i]}<br><span style="color:#8995a8">Tạo 1 Story 70s + video 9:16 + thumbnail.</span></div>`).join('');}
+function generateFullContent(){const t=currentTopic();if(!t){setStatus('⚠️ Hãy nhập hoặc tạo một chủ đề trước.');return}generate();}
+
+function clearTopicHistory(){
+  topicHistory.length=0;
+  topicHistorySet.clear();
+  updateHistoryCount();
+  localStorage.removeItem("story_topic_history_v4");
+  setStatus("🗑️ Đã xóa lịch sử chủ đề đã tạo trên trình duyệt.");
+}
+function setStatus(x){document.getElementById("status").textContent=x}
+async function cp(text,msg){
+if(!text){setStatus("⚠️ Chưa có nội dung để copy.");return}
+try{await navigator.clipboard.writeText(text)}catch(e){let x=document.createElement("textarea");x.value=text;document.body.appendChild(x);x.select();document.execCommand("copy");x.remove()}
+setStatus("✅ "+msg)
+}
+function stripStoryLabels(s){
+return s.replace(/^\[(?:HOOK|PHẦN 1|PHẦN 2|CAO TRÀO|KẾT)[^\]]*\]\s*$/gmi,"").replace(/\n{3,}/g,"\n\n").trim();
+}
+function copyStory(){cp(stripStoryLabels(document.getElementById("story").value),"Đã copy bản sạch cho ElevenLabs — giữ nguyên xuống dòng và khoảng nghỉ.")}
+function copyFormattedStory(){cp(document.getElementById("story").value.trim(),"Đã copy bản có phân đoạn và mốc thời gian.")}
+function copyHook(){cp(document.getElementById("thumbHook").value.trim(),"Đã copy hook.")}
+function copyThumb(){cp(document.getElementById("thumb").value.trim(),"Đã copy prompt thumbnail.")}
+function copyField(id,msg){cp(document.getElementById(id).value.trim(),msg)}
+function clearKey(){document.getElementById("apiKey").value="";localStorage.removeItem("story_api_key");setStatus("Đã xóa API key khỏi trình duyệt.")}
+function resetAll(){clearGeneratedContentForNewTopic();document.getElementById("custom").value="";document.getElementById("topic").value="";document.getElementById("story").value="";document.getElementById("fb").value="";document.getElementById("tt").value="";document.getElementById("yt").value="";document.getElementById("thumbHook").value="";document.getElementById("thumb").value="";document.getElementById("master").value="";last={topic:"",hook:"",story:""};updateMeta("");setStatus("")}
+document.getElementById("story").addEventListener("input",e=>updateMeta(stripStoryLabels(e.target.value)));
+function updateHistoryCount(){document.getElementById("historyCount").textContent=topicHistory.length}
+updateHistoryCount();
+renderHistory(); renderProjects(); buildCalendar();
+document.getElementById("apiKey").value=localStorage.getItem("story_api_key")||"";
+document.getElementById("apiKey").addEventListener("change",e=>{if(e.target.value.trim())localStorage.setItem("story_api_key",e.target.value.trim())});
+
+
+/* ================= V9 PRO ENGINE ================= */
+const V10KEY='dungnguyen_projects_v9';
+let selectedHookPro='';
+function getStoryPlain(){return stripStoryLabels(document.getElementById('story').value||'').trim()}
+function buildHookLabPro(){
+ const t=currentTopic(); if(!t){setStatus('⚠️ Hãy nhập hoặc tạo chủ đề trước.');return}
+ const d=currentDNA||buildTopicDNA(t), base=cleanSentence(t);
+ const hooks=[
+  `Có một sự thật về “${base}” mà ít người dám nói.`,
+  `Tôi từng nghĩ “${base}” sẽ không bao giờ xảy ra với mình.`,
+  `Đau nhất không phải “${base}”, mà là điều ta nhận ra sau đó.`,
+  `Nếu bạn từng “${base}”, hãy nghe câu chuyện này đến cuối.`,
+  `Có những người chỉ hiểu “${base}” sau một lần mất mát.`,
+  `Chúng ta thường im lặng nhất khi “${base}” xảy ra.`,
+  `Một ngày bạn sẽ hiểu vì sao “${base}” khiến người ta đổi khác.`,
+  `Không ai nhìn thấy phía sau “${base}” là bao nhiêu áp lực.`,
+  `Tưởng như chỉ là “${base}”, nhưng nó đã thay đổi một người.`,
+  `Có những chuyện “${base}” rồi mới biết mình đã chịu đựng quá lâu.`
+ ];
+ const types=['TÒ MÒ','TRẢI NGHIỆM','NGHỊCH LÝ','ĐỒNG CẢM','NHẬN RA','IM LẶNG','TRƯỞNG THÀNH','ÁP LỰC','CÂU CHUYỆN','DƯ ÂM'];
+ document.getElementById('hookLabPro').innerHTML=hooks.map((h,i)=>`<div class="v9panel"><span class="v9badge">${types[i]}</span><textarea id="hookPro${i}" class="output" style="min-height:100px">${h}</textarea><div class="v9toolbar"><button onclick="selectHookPro(${i})">🎯 DÙNG HOOK NÀY</button><button class="copy" onclick="copyField('hookPro${i}','Đã copy Hook ${i+1}.')">📋 COPY</button></div></div>`).join('');
+ selectedHookPro=hooks[0]; updateProStats();
+}
+function refreshAllDerivedAfterHook(){
+  const t=currentTopic();
+  if(!t)return;
+  const safe=(fn)=>{try{fn()}catch(e){console.warn('V9 module refresh:',e)}};
+  safe(buildVoiceReady);
+  safe(buildVideoPrompt);
+  safe(buildImagePrompt);
+  safe(()=>{document.getElementById('thumb').value=makeThumb(t)});
+  safe(()=>{document.getElementById('thumbHook').value=selectedHookPro||document.getElementById('thumbHook').value});
+  
+  safe(makeMasterPrompt);
+  safe(()=>{document.getElementById('packagePreview').value=packageText()});
+  safe(()=>updateMeta(stripStoryLabels(document.getElementById('story').value||'')));
+  safe(()=>runQualityChecks(t,document.getElementById('story').value||''));
+  safe(updateProStats);
+  safe(()=>saveProjectV9(true));
+}
+
+function storyLines(){
+  return String(document.getElementById('story')?.value||'')
+    .replace(/\r/g,'')
+    .split(/\n+/)
+    .map(x=>x.trim())
+    .filter(Boolean)
+    .filter(x=>!/^\[(?:HOOK|PHẦN\s*1|PHẦN\s*2|CAO\s*TRÀO|KẾT|PART\s*1|PART\s*2|CLIMAX|ENDING)[^\]]*\]$/i.test(x));
+}
+function sentenceList(){
+  const plain=getStoryPlain();
+  if(!plain)return [];
+  return plain.split(/(?<=[.!?…])\s+|\n+/).map(x=>x.trim()).filter(Boolean);
+}
+function normalizeContentText(s){
+  return String(s||'').replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+}
+function ensureStoryForRemix(){
+  const t=currentTopic();
+  const storyEl=document.getElementById('story');
+  if(!t || !storyEl) return '';
+  let story=normalizeContentText(storyEl.value);
+  if(!story){
+    // If the user reaches Remix/Package before generating Story, create it automatically.
+    currentDNA=currentDNA||buildTopicDNA(t); setDNA(currentDNA);
+    story=makeStory(t);
+    storyEl.value=story;
+    const c=captions(t,story);
+    document.getElementById('fb').value=c.fb;
+    document.getElementById('tt').value=c.tt;
+    document.getElementById('yt').value=c.yt;
+    document.getElementById('thumbHook').value=makeHook(t).replace(/\.\.\.$/,'');
+    document.getElementById('thumb').value=makeThumb(t);
+    try{makeMasterPrompt()}catch(e){}
+    try{buildHookLabPro()}catch(e){}
+    try{buildVoiceReady()}catch(e){}
+    try{buildVideoPrompt()}catch(e){}
+    try{buildImagePrompt()}catch(e){}
+    last={topic:t,hook:document.getElementById('thumbHook').value,story:story};
+    generatedForTopic=t;
+  }
+  return story;
+}
+function extractStorySentences(){
+  const plain=getStoryPlain();
+  if(!plain)return [];
+  return plain.split(/\n+/).flatMap(line=>line.split(/(?<=[.!?…])\s+/)).map(x=>x.trim()).filter(Boolean)
+    .filter(x=>!/^\[(?:HOOK|PHẦN\s*1|PHẦN\s*2|CAO\s*TRÀO|KẾT|PART\s*1|PART\s*2|CLIMAX|ENDING)[^\]]*\]$/i.test(x));
+}
+function createRemix30(){
+  const story=ensureStoryForRemix(); if(!story)return '';
+  const s=extractStorySentences();
+  const hook=(selectedHookPro||document.getElementById('thumbHook')?.value||s[0]||'').trim();
+  const body=s.filter(x=>x!==hook);
+  const ending=body[body.length-1]||s[s.length-1]||hook;
+  const climax=body[body.length-2]||ending;
+  const candidates=[hook,...body.slice(0,5),climax,ending].filter(Boolean);
+  const unique=[]; const seen=new Set();
+  for(const x of candidates){const k=x.trim();if(k&&!seen.has(k)){seen.add(k);unique.push(k)}}
+  let out=unique.join('\n\n');
+  if(words(out)>100){
+    const picked=[];let n=0;
+    for(const x of unique){const w=words(x);if(!picked.length||n+w<=92||x===ending){picked.push(x);n+=w}if(n>=60)break}
+    out=picked.join('\n\n');
+  }
+  return out.trim();
+}
+function createRemix15(){
+  const story=ensureStoryForRemix(); if(!story)return '';
+  const s=extractStorySentences();
+  const hook=(selectedHookPro||document.getElementById('thumbHook')?.value||s[0]||'').trim();
+  const punch=s.filter(x=>x!==hook).sort((a,b)=>b.length-a.length)[0]||hook;
+  return [hook,punch].filter(Boolean).filter((x,i,a)=>a.indexOf(x)===i).join('\n\n').trim();
+}
+function createQuote(){
+  const story=ensureStoryForRemix(); if(!story)return '';
+  const s=extractStorySentences().filter(x=>words(x)>=6);
+  return (s.sort((a,b)=>b.length-a.length)[0]||extractStorySentences()[0]||'').replace(/^[-–—]\s*/,'').trim();
+}
+function createCommunity(){
+  const t=currentTopic(); if(!t)return '';
+  return `Có bao giờ bạn trải qua chuyện “${t}” chưa?\n\nĐiều gì khiến bạn nhớ nhất về khoảng thời gian đó?\n\nBạn sẽ chọn im lặng, buông bỏ hay nói ra?\n\n👇 Hãy chia sẻ một câu chuyện của bạn ở phần bình luận.`;
+}
+function buildRemixAll(){ return ""; }
+
+function applyHookToStory(h){
+  h=String(h||'').replace(/\s+/g,' ').trim();
+  if(!h){setStatus('⚠️ Hook đang trống.');return false;}
+  const t=currentTopic();
+  if(!t){setStatus('⚠️ Hãy nhập hoặc tạo chủ đề trước.');return false;}
+  const storyEl=document.getElementById('story');
+  let original=String(storyEl.value||'').replace(/\r/g,'').trim();
+  if(!original){setStatus('⚠️ Hãy tạo Story 70s trước khi dùng Hook.');return false;}
+
+  const lines=original.split('\n');
+  let hookStart=-1, hookEnd=-1, nextSection=-1;
+  for(let i=0;i<lines.length;i++){
+    if(/^\s*\[HOOK[^\]]*\]\s*$/i.test(lines[i])){hookStart=i;break;}
+  }
+  if(hookStart>=0){
+    nextSection=lines.findIndex((line,idx)=>idx>hookStart && /^\s*\[(?:PHẦN\s*1|PART\s*1)[^\]]*\]\s*$/i.test(line));
+    hookEnd=nextSection>=0?nextSection:lines.length;
+    const label=lines[hookStart].trim();
+    const before=lines.slice(0,hookStart);
+    const after=lines.slice(hookEnd);
+    storyEl.value=[...before,label,'',h,...after].join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  }else{
+    // Fallback for older/custom story formats: replace the first non-empty line.
+    let idx=lines.findIndex(x=>x.trim());
+    if(idx<0){setStatus('⚠️ Không tìm thấy phần Hook trong Story.');return false;}
+    lines[idx]=h;
+    storyEl.value=lines.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  }
+
+  last.hook=h;
+  last.story=storyEl.value;
+  generatedForTopic=t;
+  selectedHookPro=h;
+  document.getElementById('thumbHook').value=h;
+  refreshAllDerivedAfterHook();
+  setStatus('🔥 Đã thay Hook trong STORY 70S và đồng bộ toàn bộ nội dung liên quan.');
+  return true;
+}
+function selectHookPro(i){
+  const el=document.getElementById('hookPro'+i); if(!el)return;
+  const h=el.value.trim();
+  if(applyHookToStory(h)){
+    [...document.querySelectorAll('#hookLabPro .v9panel')].forEach((p,idx)=>p.classList.toggle('selected-hook',idx===i));
+  }
+}
+function useLegacyHook(i){
+  const el=document.getElementById('hook'+i); if(!el)return;
+  applyHookToStory(el.value.trim());
+}
+function useHook(i){
+  const el=document.getElementById('hookPro'+i)||document.getElementById('hook'+i);
+  if(el)applyHookToStory(el.value.trim());
+}
+function copySelectedHook(){
+  if(!selectedHookPro){
+    const first=document.getElementById('hookPro0')||document.getElementById('hook0');
+    selectedHookPro=first?.value.trim()||'';
+  }
+  cp(selectedHookPro,'Đã copy Hook đang chọn.');
+}
+function buildVoiceReady(){
+ const raw=getStoryPlain(); if(!raw){setStatus('⚠️ Hãy tạo Story trước.');return}
+ let s=raw.replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+ const pace=document.getElementById('voicePace')?.value||'Chậm cảm xúc';
+ s=s.split('\n').map(x=>x.trim()).filter(Boolean).join('\n');
+ if(pace.includes('Rất chậm')) s=s.replace(/([.!?…])\s+/g,'$1\n\n');
+ else if(pace.includes('Chậm')) s=s.replace(/([.!?…])\s+(?=[A-ZÀ-ỴĐ])/g,'$1\n');
+ document.getElementById('voiceReady').value=s.trim();
+ setStatus('🎙️ Đã tối ưu bản thoại cho ElevenLabs ('+document.getElementById('voicePreset').value+').');
+}
+function ensureDerivedContent(){
+  const t=currentTopic();
+  if(!t)return false;
+  const story=getStoryPlain();
+  if(!story)return false;
+  currentDNA=currentDNA||buildTopicDNA(t); setDNA(currentDNA);
+  const safe=(fn)=>{try{fn()}catch(e){console.warn('V9 package:',e)}};
+  if(!document.getElementById('voiceReady').value.trim()) safe(buildVoiceReady);
+  if(!document.getElementById('videoPrompt').value.trim()) safe(buildVideoPrompt);
+  if(!document.getElementById('imagePrompt').value.trim()) safe(buildImagePrompt);
+  if(!document.getElementById('thumb').value.trim()) safe(()=>document.getElementById('thumb').value=makeThumb(t));
+  if(!document.getElementById('master').value.trim()) safe(makeMasterPrompt);
+  if(!document.getElementById('fb').value.trim()||!document.getElementById('tt').value.trim()||!document.getElementById('yt').value.trim()){
+    safe(()=>{const c=captions(t,story);document.getElementById('fb').value=c.fb;document.getElementById('tt').value=c.tt;document.getElementById('yt').value=c.yt});
+  }
+  if(!document.getElementById('thumbHook').value.trim()) safe(()=>document.getElementById('thumbHook').value=makeHook(t).replace(/\.\.\.$/,''));
+  
+  return true;
+}
+function preparePackage(){
+  const t=currentTopic();
+  if(!t){setStatus('⚠️ Hãy nhập hoặc tạo một chủ đề trước.');return false;}
+  const story=ensureStoryForRemix();
+  if(!story){setStatus('⚠️ Chưa có Story để đóng gói.');return false;}
+  try{currentDNA=currentDNA||buildTopicDNA(t);setDNA(currentDNA)}catch(e){}
+  try{if(!document.getElementById('voiceReady').value.trim())buildVoiceReady()}catch(e){}
+  try{if(!document.getElementById('videoPrompt').value.trim())buildVideoPrompt()}catch(e){}
+  try{if(!document.getElementById('imagePrompt').value.trim())buildImagePrompt()}catch(e){}
+  try{if(!document.getElementById('thumb').value.trim())document.getElementById('thumb').value=makeThumb(t)}catch(e){}
+  try{if(!document.getElementById('master').value.trim())makeMasterPrompt()}catch(e){}
+  
+  const text=packageText();
+  document.getElementById('packagePreview').value=text;
+  updateProStats();
+  try{saveProjectV9(true)}catch(e){}
+  setStatus('📦 Content Package đã được tạo/cập nhật đầy đủ.');
+  return true;
+}
+function packageText(){
+  const t=currentTopic(),d=currentDNA||buildTopicDNA(t),story=getStoryPlain();
+  const lines=['DUNGNGUYENVL AI CONTENT STUDIO V10','================================','TOPIC: '+t,'','TOPIC DNA'];
+  Object.entries(d||{}).forEach(([k,v])=>{if(k!=='type'&&k!=='topic')lines.push(k.toUpperCase()+': '+(v||''));});
+  const fields=[
+    ['STORY 70S',story],
+    ['ELEVENLABS',document.getElementById('voiceReady').value||document.getElementById('eleven').value],
+    ['FACEBOOK CAPTION',document.getElementById('fb').value],
+    ['TIKTOK CAPTION',document.getElementById('tt').value],
+    ['YOUTUBE CAPTION',document.getElementById('yt').value],
+    ['THUMBNAIL HOOK',document.getElementById('thumbHook').value],
+    ['THUMBNAIL PROMPT',document.getElementById('thumb').value],
+    ['IMAGE PROMPT',document.getElementById('imagePrompt').value],
+    ['VIDEO PROMPT',document.getElementById('videoPrompt').value],
+    ['MASTER PROMPT',document.getElementById('master').value],
+  ];
+  fields.forEach(([n,v])=>lines.push('','### '+n,(v||'(chưa tạo)')));
+  return lines.join('\n');
+}
+function copyContentPackage(){if(!preparePackage())return;cp(document.getElementById('packagePreview').value,'Đã copy toàn bộ Content Package.');}
+function downloadContentPackage(){
+  if(!preparePackage())return;
+  const t=currentTopic(),text=document.getElementById('packagePreview').value;
+  const blob=new Blob([text],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='DUNGNGUYENVL_'+t.replace(/[^\p{L}\p{N}]+/gu,'_').slice(0,60)+'.txt';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  setStatus('⬇️ Đã tải Content Package .TXT.');
+}
+function prepareAndCopyPackage(){copyContentPackage()}
+function prepareAndDownloadPackage(){downloadContentPackage()}
+function buildRemix(kind){
+  const t=currentTopic(); if(!t){setStatus('⚠️ Hãy nhập hoặc tạo chủ đề trước.');return false;}
+  let value='';
+  if(kind===30)value=createRemix30();
+  else if(kind===15)value=createRemix15();
+  else if(kind==='quote')value=createQuote();
+  else if(kind==='community')value=createCommunity();
+  const target=kind===30?'remix30':kind===15?'remix15':kind==='quote'?'remixQuote':'remixCommunity';
+  document.getElementById(target).value=value;
+  try{document.getElementById('packagePreview').value=packageText()}catch(e){}
+  updateProStats();
+  try{saveProjectV9(true)}catch(e){}
+  setStatus(value?'✅ Đã tạo '+(kind===30?'Remix 30s':kind===15?'Remix 15s':kind==='quote'?'Quote Facebook':'Community Post')+'.':'⚠️ Không tạo được nội dung.');
+  return !!value;
+}
+
+function projectDataV9(){return {...projectData(),tag:document.getElementById('category')?.value||'Tâm trạng',favorite:false,version:'v10',voice:document.getElementById('voiceReady')?.value||'',remix30:document.getElementById('remix30')?.value||'',remix15:document.getElementById('remix15')?.value||'',quote:document.getElementById('remixQuote')?.value||'',community:document.getElementById('remixCommunity')?.value||''}}
+function saveProjectV9(silent=false){const p=projectDataV9();if(!p.topic)return;let arr=JSON.parse(localStorage.getItem(V10KEY)||'[]');const old=arr.find(x=>x.topic===p.topic);if(old){p.favorite=!!old.favorite}arr=arr.filter(x=>x.topic!==p.topic);arr.push(p);arr=arr.slice(-100);localStorage.setItem(V10KEY,JSON.stringify(arr));renderProjectsPro();if(!silent)setStatus('💾 Đã lưu Project V10.');}
+function loadProjectV9(i){const arr=JSON.parse(localStorage.getItem(V10KEY)||'[]'),p=arr[i];if(!p)return;document.getElementById('topic').value=p.topic;currentDNA=p.dna||buildTopicDNA(p.topic);setDNA(currentDNA);['story','fb','tt','yt','thumbHook','thumb','videoPrompt','imagePrompt','eleven','master'].forEach((id,j)=>{const map=['story','fb','tt','yt','thumbHook','thumb','video','image','eleven','master'];document.getElementById(id).value=p[map[j]]||''});document.getElementById('voiceReady').value=p.voice||p.eleven||'';last={topic:p.topic,hook:p.thumbHook,story:p.story};generatedForTopic=p.topic;buildHookLabPro();updateMeta(getStoryPlain());runQualityChecks(p.topic,p.story||'');updateProStats();setStatus('📂 Đã mở Project V10.');}
+function toggleFavoriteV9(i){let arr=JSON.parse(localStorage.getItem(V10KEY)||'[]');if(!arr[i])return;arr[i].favorite=!arr[i].favorite;localStorage.setItem(V10KEY,JSON.stringify(arr));renderProjectsPro();}
+function deleteProjectV9(i){let arr=JSON.parse(localStorage.getItem(V10KEY)||'[]');arr.splice(i,1);localStorage.setItem(V10KEY,JSON.stringify(arr));renderProjectsPro();setStatus('🗑️ Đã xóa Project.');}
+function renderProjectsPro(){const el=document.getElementById('projectListPro');if(!el)return;let arr=JSON.parse(localStorage.getItem(V10KEY)||'[]');const q=(document.getElementById('projectSearch')?.value||'').toLowerCase();const tag=document.getElementById('projectTag')?.value||'all';const indexed=arr.map((p,i)=>({p,i})).filter(({p})=>(!q||p.topic.toLowerCase().includes(q))&&(tag==='all'||p.tag===tag));el.innerHTML=indexed.length?indexed.reverse().map(({p,i})=>`<div class="v9project"><div><b>${p.favorite?'⭐ ':''}${String(p.topic).replace(/[<>]/g,'')}</b><br><span class="v9badge">${p.tag||'Tâm trạng'}</span> <span class="hint">${p.time||''}</span></div><div class="v9toolbar"><button onclick="loadProjectV9(${i})">📂 MỞ</button><button onclick="toggleFavoriteV9(${i})">${p.favorite?'☆ BỎ GHIM':'⭐ GHIM'}</button><button class="danger" onclick="deleteProjectV9(${i})">🗑️</button></div></div>`).join(''):'Chưa tìm thấy Project.';}
+function exportProjects(){const data=localStorage.getItem(V10KEY)||'[]';const blob=new Blob([data],{type:'application/json;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dungnguyenvl_projects_v9.json';a.click();URL.revokeObjectURL(a.href);setStatus('⬇️ Đã xuất Projects JSON.');}
+function importProjectsPrompt(){const raw=prompt('Dán nội dung JSON Projects V9 vào đây:');if(!raw)return;try{const data=JSON.parse(raw);if(!Array.isArray(data))throw Error('JSON không hợp lệ');localStorage.setItem(V10KEY,JSON.stringify(data.slice(-100)));renderProjectsPro();setStatus('⬆️ Đã nhập Projects.')}catch(e){setStatus('❌ JSON không hợp lệ.')}}
+function buildCalendarPro(n){const themes=['Tình yêu dang dở','Cô đơn','Gia đình','Trưởng thành','Tiền bạc & áp lực','Chữa lành','Triết lý cuộc sống','Tình bạn','Người cũ','Những điều chỉ hiểu khi lớn'];const el=document.getElementById('calendarPro');let html='';for(let i=0;i<n;i++){const d=new Date();d.setDate(d.getDate()+i);const day=d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'});html+=`<div class="qitem"><b>NGÀY ${i+1} • ${day}</b><br>${themes[i%themes.length]}<br><span class="hint">Story 70s + Hook + Caption + Video Prompt + Thumbnail.</span></div>`}el.innerHTML=html;setStatus('📅 Đã tạo lịch '+n+' ngày.');}
+function updateProStats(){const story=getStoryPlain(),wc=words(story);document.getElementById('pkgWords').textContent=wc;document.getElementById('pkgSeconds').textContent=wc?Math.round(wc/2.45)+'s':'0s';document.getElementById('pkgStatus').textContent=story?'READY':'—';const qH=document.getElementById('qHookPro'),qE=document.getElementById('qEmotionPro'),qEn=document.getElementById('qEndingPro'),qP=document.getElementById('qPackagePro');if(qH){const h=document.getElementById('thumbHook').value.trim();qH.className='qitem '+(h&&h.length>=35?'ok':'warn');qH.textContent=(h&&h.length>=35?'✅':'⚠️')+' Hook: '+(h?'đã có':'chưa có')}if(qE){const emo=/đau|buồn|nhớ|mất|im lặng|thương|cô đơn|chia tay|áp lực|hy vọng|trưởng thành/i.test(story);qE.className='qitem '+(emo?'ok':'warn');qE.textContent=(emo?'✅':'⚠️')+' Tín hiệu cảm xúc: '+(emo?'có':'cần tăng')}if(qEn){const end=story.split(/(?<=[.!?…])\s+/).at(-1)||'';qEn.className='qitem '+(end.length>25?'ok':'warn');qEn.textContent=(end.length>25?'✅':'⚠️')+' Ending: '+(end.length>25?'đã có câu kết':'cần câu kết')}if(qP){const ready=!!(story&&document.getElementById('videoPrompt').value&&document.getElementById('imagePrompt').value&&document.getElementById('fb').value);qP.className='qitem '+(ready?'ok':'warn');qP.textContent=(ready?'✅':'⚠️')+' Content Package: '+(ready?'đủ thành phần chính':'thiếu thành phần')}}
+// Override generation wrapper to also prepare V9 modules.
+const _generateOriginal=generate;
+generate=function(){
+  const result=_generateOriginal();
+  const finish=()=>{buildHookLabPro();buildVoiceReady();document.getElementById('packagePreview').value=packageText();saveProjectV9(true);updateProStats();renderProjectsPro();};
+  if(result && typeof result.then==='function') result.then(finish).catch(finish); else setTimeout(finish,30);
+  return result;
+};
+const _generateAIOriginal=generateAI;
+generateAI=async function(){await _generateAIOriginal();setTimeout(()=>{buildHookLabPro();buildVoiceReady();updateProStats();saveProjectV9(true);renderProjectsPro()},0)};
+const _saveProjectOriginal=saveProject;
+saveProject=function(silent=false){_saveProjectOriginal(silent);saveProjectV9(true)};
+document.getElementById('story').addEventListener('input',()=>{updateProStats(); const p=document.getElementById('packagePreview'); if(p&&getStoryPlain()) p.value=packageText();});
+document.getElementById('thumbHook')?.addEventListener('input',()=>{updateProStats();});
+['fb','tt','yt','thumb','videoPrompt','imagePrompt','master','voiceReady'].forEach(id=>document.getElementById(id)?.addEventListener('input',()=>{const p=document.getElementById('packagePreview');if(p&&getStoryPlain())p.value=packageText();updateProStats();}));
+document.getElementById('projectSearch')?.addEventListener('input',renderProjectsPro);
+document.getElementById('projectTag')?.addEventListener('change',renderProjectsPro);
+// Migrate V8 projects once into V9.
+(function migrateV8(){if(localStorage.getItem(V10KEY))return;try{const old=JSON.parse(localStorage.getItem('dungnguyen_projects_v8')||'[]');if(old.length)localStorage.setItem(V10KEY,JSON.stringify(old.map(x=>({...x,version:'v10',tag:'Tâm trạng',favorite:false})).slice(-100)))}catch(e){}})();
+renderProjectsPro();buildCalendarPro(7);updateProStats();
+if(document.getElementById('packagePreview')&&getStoryPlain()) document.getElementById('packagePreview').value=packageText();
+
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script>
+</body>
+</html>
